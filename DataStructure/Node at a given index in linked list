@@ -1,0 +1,22 @@
+
+    class Solution {
+        public int GetNth(Node head, int index) {
+            if (head == null || index <= 0) {     // Ensure the head is not null and index is positive
+            return -1; // Return -1 for invalid cases
+        }
+        
+        Node temp = head;
+        int count = 1; // Indexing starts at 1 based on the original code
+        
+        while (temp != null) {
+            if (count == index) {
+                return temp.data; // Return the data if count matches the index
+            }
+            count++;
+            temp = temp.next; // Move to the next node
+        }
+        
+        return -1; // Return -1 if the index is out of the bounds of the linked list
+    }
+
+    }
