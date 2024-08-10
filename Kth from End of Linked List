@@ -1,0 +1,22 @@
+class Solution {
+
+    // Function to find the data of kth node from
+    // the end of a linked list.
+    int getKthFromLast(Node head, int k) {
+        Node temp = head;
+        int count = 0;
+       temp = head;
+       while(temp!=null)
+       {
+           count++;
+           temp = temp.next;
+       }if(count<k) return -1;
+         temp = head;
+         int x = count-k;
+         while(x-->0){ //   while(x--)     int can not be converted to boolean it means "in while" condition we have either true or false so int cant be boolean
+         
+             temp = temp.next;
+         }return temp.data;
+         
+    }
+}
