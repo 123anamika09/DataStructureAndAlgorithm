@@ -1,0 +1,13 @@
+class GfG
+{
+    Node deleteNode(Node head, int x)
+    {
+	    Node temp = head;
+	    for(int i = 1; i < x-1 ;i++){
+	        head = head.next;
+	        
+	    }
+	    head.next = head.next.next;
+	    return temp;
+    }
+}
