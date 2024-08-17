@@ -1,0 +1,12 @@
+class Solution {
+    public void deleteNode(ListNode node) {
+        // head not given so we cannt dlt the node 
+       
+        node.val = node.next.val;
+        node.next = node.next.next;
+       
+    }
+
+
+}
+//here when we apply(while node.next!=null) then it cannt ccess the last node; 
