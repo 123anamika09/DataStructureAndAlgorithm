@@ -1,0 +1,18 @@
+class Solution {
+    // Function to rotate a linked list.
+    public Node rotate(Node head, int k) {
+        Node temp = head;
+        
+        for(int i = 1;i< k;i++){ 
+            temp = temp.next;
+            
+        }if(temp.next==null) return head; // for equal length
+        Node store = temp.next;
+        Node store1 = store;
+        temp.next=null;// 7 p hoga
+        while(store.next != null){ //null ka next error, if k = length of ll 
+            store =  store.next;
+        } store.next = head;
+        return store1; 
+    }
+}
