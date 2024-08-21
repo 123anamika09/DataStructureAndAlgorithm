@@ -1,0 +1,24 @@
+class Solution {
+    // Function to merge K sorted linked list.
+    Node mergeKLists(List<Node> arr) {
+        ArrayList<Integer> arraylist = new ArrayList<>();
+        // 2 loop for loop for arraylist and while loop for node
+        if(arr.size()==0 && arr==null) return null;
+        for(int i =0;i<arr.size();i++){
+            Node current = arr.get(i);
+            while(arr.get(i)!=null){ 
+                 arraylist.add(current.data); // linedlist h so .val used hota 
+                current = current.next;   // get(I) for address of 1 or more
+            }
+        }
+        Collections.sort(arraylist);
+        Node ans = new Node(8); 
+        Node store = ans;
+        for(int i = 0;i<arraylist.size();i++){
+           Node temp = new Node(arraylist.get(i)); // get(I) for arraylist
+           store.next = temp;
+           store = store.next;
+       } 
+       return ans.next;
+    }
+}
