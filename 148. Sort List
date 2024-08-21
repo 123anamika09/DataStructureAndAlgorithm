@@ -1,0 +1,50 @@
+class Solution {
+    public ListNode sortList(ListNode head) {
+        if( head == null || head.next == null ) return head;
+        ListNode temp = head;
+        
+        // mid point k liye agr koii slow and fast h to fast agr 2 step chlta h to slow uske half hi rhega
+        ListNode slow = head;
+        ListNode fast = head.next; // for better
+        
+        while(fast!=null && fast.next!=null){
+          slow = slow.next;
+          fast = fast.next.next; //null.next = error
+      } 
+        ListNode h2 = slow.next ;
+        ListNode h1 = head;
+        slow.next=null;
+        h1 =   sortList(h1); //recursion - base case dena prta h
+        h2 =   sortList(h2);   
+        return merge( h1,h2);
+    }
+    public ListNode merge(ListNode h1, ListNode h2){
+       ListNode ans = new ListNode();
+       ListNode store = ans;  // jb hm aage traverse krenge to ans ka too address bhul jayenge n so ans ko store
+       while(h1 != null && h2!= null ){
+        if(h1.val <= h2.val) {
+             store.next = h1;
+             h1= h1.next;
+            
+        }else {
+            store.next = h2;
+            h2= h2.next;
+            
+        }store = store.next;
+       }
+       while(h1 != null){
+        store.next = h1;
+        h1 = h1.next;
+        store = store.next;
+       }while(h2 != null){
+        store.next = h2;
+        h2 = h2.next;
+        store = store.next;
+       }
+       return ans.next; // q ki store .next se strat kre store krna
+
+    } 
+   
+}
+
+// == h1.val inteer                     equals  ??
