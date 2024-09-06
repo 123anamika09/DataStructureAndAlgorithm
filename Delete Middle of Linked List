@@ -1,0 +1,19 @@
+class Solution {
+    Node deleteMid(Node head) {
+       if( head == null || head.next==null) return null;
+       Node slow = head ;
+       Node fast = head ;
+    //   temp ko slow me store kr le ...
+    // temp ko next krne se phle store kr lenge
+       Node temp = null;
+       while(fast!=null && fast.next!=null){
+           temp = slow;
+           slow = slow.next;
+           fast = fast.next.next;
+       }
+        
+       temp.next = temp.next.next;
+       return head;
+        //  dummy node is made when we have to wrok on head && have to change the haed && set to be null 
+    }
+}
