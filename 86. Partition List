@@ -1,0 +1,27 @@
+class Solution {
+    public ListNode partition(ListNode head, int x) {
+        ListNode before = new ListNode(0);
+        ListNode after = new ListNode(0);
+        ListNode b = before ; // we lost the access of 1st node after traveersal so we store it  at b && a
+        ListNode a = after;
+        if( head == null ||head.next == null ) return head;
+        while(head!=null){
+            if(head.val<x){
+                before.next = head;
+                before=before.next;
+                
+            }else {
+                after.next = head;
+                after = after.next;
+                
+            }
+            head=head.next;
+            
+        } 
+        before.next =  a.next; // b to hmara last node h n so 
+        b = b.next; // when we make a new listnode the at 1st position we put 0 value in both a & b so we have to remove it so we goes to a = a.next
+
+        after.next = null;
+        return b;
+    }
+}
