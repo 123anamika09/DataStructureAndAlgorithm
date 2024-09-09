@@ -1,0 +1,15 @@
+class Solution {
+    
+    public String reverse(String S){
+       Stack < Character> st = new Stack<>();
+       int n = S.length();
+        for(int i = 0;i<n;i++){
+             st.push(S.charAt(i));
+        }S = "";
+        while(!st.isEmpty()){
+            S = S+st.pop();
+        }
+        return S;
+    }
+
+}
