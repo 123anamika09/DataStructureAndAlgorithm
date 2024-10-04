@@ -1,0 +1,18 @@
+class Solution {
+    public String ans(String z){
+         Stack <Character> st = new Stack<>();
+         for(char c:z.toCharArray()){
+            if(c != '#') st.push(c);
+            else if(!st.isEmpty()) st.pop();
+         }
+         StringBuilder sb = new StringBuilder();
+         while(!st.isEmpty()){
+            sb.append(st.pop());
+
+         }
+         return sb.toString();
+    }
+    public boolean backspaceCompare(String s, String t) {
+           return ans(s) . equals (ans(t));
+    }
+}
