@@ -1,0 +1,19 @@
+class Solution{
+    
+    Queue<Integer> q = new LinkedList<>();
+    public Queue<Integer> push(int arr[], int n)
+    {
+        for(int i = 0;i<n;i++){
+            q.add(arr[i]);
+        }
+        return q;
+    }
+    
+    public void _pop(Queue<Integer> q)
+    {
+        while(!q.isEmpty())
+        System.out.print( q.poll()+" ");
+        
+    }
+  
+}
