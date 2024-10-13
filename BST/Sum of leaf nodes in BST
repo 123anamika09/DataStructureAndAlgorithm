@@ -1,0 +1,21 @@
+class Solution
+{
+     static int ans = 0;
+    public static void Sum(Node root){
+        if(root == null ) {
+            return ;
+        }
+         if(root.left == null && root.right ==null) {
+             ans += root.data;
+            return ;
+         } 
+         Sum(root.left);
+         Sum(root.right);
+    }
+    public static int sumOfLeafNodes(Node root)
+    {
+        ans = 0;
+        Sum(root);
+        return ans;
+    }
+}
