@@ -1,0 +1,30 @@
+package heaps;
+
+
+import java.util.PriorityQueue;
+
+
+public class connectRopesWithMinmCost {
+    public static void main(String[] args) {
+        int[] arr = {2, 7, 4, 1, 8};
+        System.out.println(minCost(arr));
+    }
+
+    public static int minCost(int[] arr) {
+
+
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        for (int ele : arr) {
+            pq.add(ele);
+        }
+        int cost = 0;
+        while(pq.size()>1) {
+            int c = pq.remove();
+            int d = pq.remove();
+            cost+= c+d;
+            pq.add(c+d);
+        }
+        return cost;
+    }
+
+}
