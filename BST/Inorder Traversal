@@ -1,0 +1,11 @@
+class Solution {
+    // Function to return a list containing the inorder traversal of the tree.
+    ArrayList<Integer> arr = new ArrayList<>();//global
+      ArrayList<Integer> inOrder(Node root) {
+          if(root == null) return arr;
+          inOrder(root.left); // left call   // jb hm  aise kr rhe to 2 baar inorder call hoga aur baar baar araaylist form hoga aur uske value change hote rhenge a do we make it global
+          arr.add(root.data); // root print
+          inOrder(root.right); // right call
+          return arr ;
+    }
+}
