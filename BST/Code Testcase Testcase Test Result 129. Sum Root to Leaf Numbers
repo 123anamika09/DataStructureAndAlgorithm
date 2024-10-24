@@ -1,0 +1,19 @@
+class Solution {
+    int sum = 0;
+    public void helper(TreeNode root,int n){  // next wale fnc ko phr 4 v to dena parega next call k liye so 2 paraameter pass
+    if(root == null) return ;
+      n = n*10+root.val;
+      if(root.left == null && root .right == null) sum = sum + n;
+      helper(root.right,n);
+      helper(root.left,n);
+       
+    }
+
+    public int sumNumbers(TreeNode root) {
+        int n = 0;
+        if(root == null) return 0;
+        helper(root,n);
+        return sum;
+    }
+
+}
