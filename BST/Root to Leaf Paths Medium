@@ -1,0 +1,23 @@
+class Solution {
+     public static void findPaths(Node root , ArrayList<Integer>path, ArrayList<ArrayList<Integer>>paths)
+   {
+    if (root == null) return ;
+      path.add(root.data);
+    if(root.left == null && root .right == null) 
+    {
+        paths.add(new ArrayList<>(path));
+    }else {
+        findPaths(root.left, path, paths);
+        findPaths(root.right, path, paths);
+    }
+     path.remove(path.size() - 1);
+     
+}
+    public static ArrayList<ArrayList<Integer>> Paths(Node root) {
+         ArrayList<ArrayList<Integer>>paths = new ArrayList<>();
+         findPaths( root,new ArrayList<>(), paths);
+        
+        return paths;
+    }
+}
+        
