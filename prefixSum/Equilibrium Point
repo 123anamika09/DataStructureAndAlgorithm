@@ -1,0 +1,24 @@
+class Solution {
+    // Function to find equilibrium point in the array.
+    public static int equilibriumPoint(int arr[]) {
+           long totalsum=0;
+        long leftsum=0;
+        
+        if(arr.length==1){
+            return 1;
+        }
+        
+        for(int i=0;i<arr.length;i++){
+            totalsum=totalsum+arr[i];
+        }
+        
+        for(int i=0;i<arr.length;i++){
+            long rightsum=totalsum-leftsum-arr[i];
+            if(leftsum==rightsum){
+                return i+1; 
+            }
+            leftsum+=arr[i];
+        }
+        return -1;
+    }
+}
