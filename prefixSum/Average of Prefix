@@ -1,0 +1,14 @@
+class Solution {
+    // Prints average of a stream of numbers
+    public ArrayList<Integer> prefixAvg(ArrayList<Integer> arr) {
+    ArrayList<Integer> a = new ArrayList<>();
+    int sum = 0;
+    int n = arr.size();
+    for(int i = 0;i<n;i++){
+           sum += arr.get(i);
+           int avg = (sum)/(i+1);
+           a.add(avg);
+       }
+       return a;
+    }
+}
