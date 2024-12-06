@@ -1,0 +1,25 @@
+class Solution {
+    public static void dfs(int i , int j ,int n,int m , int[][]grid, ArrayList<ArrayList<Integer>>result,ArrayList<Integer>currPath){
+        currPath.add(grid[i][j]);
+        if(i == n-1 && j == m-1) {
+            result.add(new ArrayList <>(currPath)); //creating a new ArrayList and initializing it with an existing collection is
+        }
+        else{
+          if(i + 1 < n) {
+            dfs(i+1,j,n,m,grid,result,currPath);
+        }  
+        if(j+1<m) {
+            dfs(i,j+1,n,m,grid,result,currPath);
+        }
+        
+        }
+        currPath.remove(currPath.size() - 1);
+    }
+    public static ArrayList<ArrayList<Integer>> findAllPossiblePaths(int n,int m, int[][] grid) {
+       ArrayList<Integer> currPath = new ArrayList<>();
+       ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+       dfs(0,0,n,m,grid,result,currPath);
+       return result;
+    }
+}
+        
