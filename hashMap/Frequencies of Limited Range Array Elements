@@ -1,0 +1,28 @@
+class Solution {
+    // Function to count the frequency of all elements from 1 to N in the array.
+    public List<Integer> frequencyCount(int[] arr) {
+        // ArrayList<Integer>list = new ArrayLits<>();
+        // Arrays.sort(arr);
+        // int n = arr[arr.length-1];
+        // for(int i = 1;i<n;i++){
+        //     for(int j = 0;j<n;j++){
+        //         int c =0;
+        //     }
+        // }
+        int n = arr.length;
+        ArrayList<Integer>list = new ArrayList<>();
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for (int num: arr) {
+            map.put(num,map.getOrDefault(num,0)+1); // method is very convenient for counting occurrences or defaulting missing values
+        }
+        for(int i = 1;i<=n;i++){
+            if( map.get(i) == null) {
+                list.add(0);
+            }else {
+                list.add(map.get(i));
+            }
+            
+        }
+        return list;
+    }
+}
