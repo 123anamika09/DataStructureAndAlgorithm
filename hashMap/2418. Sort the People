@@ -1,0 +1,17 @@
+class Solution {
+    public String[] sortPeople(String[] names , int[] heights) {
+        int n = names.length;
+        String[] str = new String[n];
+        HashMap<Integer,String> storeNameAge = new HashMap<>();
+        for(int i = 0;i<n;i++) {
+            storeNameAge.put(heights[i],names[i]);
+        }
+        Arrays.sort(heights);
+        int a = 0;
+        for(int i = n-1;i>=0;i--){
+              str[a]= storeNameAge.get(heights[i]);
+              a++;
+        }
+        return str;
+    }
+}
