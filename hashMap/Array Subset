@@ -1,0 +1,20 @@
+class Solution {
+    public boolean isSubset(int a[], int b[]) {
+       
+       // Your code here
+        Arrays.sort(a);
+        Arrays.sort(b); 
+        
+        HashSet<Integer> set = new HashSet<>();
+        for(int i: a){
+            set.add(i); 
+        }
+        
+        for(int i: b){
+            if(!set.contains(i)){
+                return false;  
+            }
+        }
+        return true; 
+    }
+}
