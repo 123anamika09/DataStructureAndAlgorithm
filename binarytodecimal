@@ -10,4 +10,3 @@ class Solution {
         return decimal;
     }
 }
-//this is for editing purpose
