@@ -1,0 +1,39 @@
+class Solution {
+    int count = 0;
+    int[][] dp ;
+    public void ans(int coins[], int add, int target, int i){
+        if(add == target) {
+            count++;
+            return;
+        }
+        if( i == coins.length || add > target) return;
+        if(dp[i][add]!=-1) {
+            count = count+dp[i][add];
+             return;
+   
+        }
+        int store = count;
+        // take 
+        ans(coins,add+coins[i],target, i); // i ko aage nhii bdhna is case me
+        // skip
+        ans(coins, add, target, i+1); // i aage bdhh rha
+        
+        dp[i][add] = count-store ;
+        
+    }
+    public int count(int coins[], int target) {
+         dp = new int[coins.length][target+1];
+         for(int i = 0;i<coins.length;i++){
+             for(int j=0;j<=target;j++){
+                dp[i][j] = -1; 
+             }
+         }
+         ans(coins, 0, target, 0);
+         return count;
+         
+    }
+}
+
+
+
+
