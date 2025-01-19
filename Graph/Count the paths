@@ -1,0 +1,21 @@
+class Solution {
+    public int dfs(List<List<Integer>>adjacencyList, int current, int destination) {
+        if(current == destination) return 1;
+        int count = 0;
+        for(int neighbor:adjacencyList.get(current)) {
+           count = count + dfs(adjacencyList, neighbor, destination);
+           
+        }
+        return count;
+    }
+    public int possible_paths(int[][] edges, int n, int start, int destination) {
+        List<List<Integer>> adjacencyList = new ArrayList<>();
+        for(int i = 0;i<n;i++) {
+            adjacencyList.add(new ArrayList<>());
+        }
+         for (int[] edge : edges) {
+            adjacencyList.get(edge[0]).add(edge[1]);
+        }
+         return dfs(adjacencyList,  start , destination);
+    }
+}
