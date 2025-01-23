@@ -1,0 +1,55 @@
+
+class Solution {
+    public boolean isSubset(int a[], int b[]) {
+    //   int i =0,j=0;
+       if(b.length>a.length) return false;
+    //   Arrays.sort(a);
+    //   Arrays.sort(b);
+    //  -------------------------- m-1------------------------
+       //1,3,3,7,7,11,13,17,21 
+       // 1,3,7,7,11
+    //   while(i<a.length && j<b.length) {
+    //      if(a[i] ==b[j]){
+    //           j++;
+    //       } i++;
+    //   }if(j == b.length) // iska mltb h ki hm check krne kbaad last index pr pahunch gye h
+    //     return true;
+    //     return false;
+    
+    // ----------------------------m-2---------------------------
+    // for(;i<a.length && j<b.length ;i++){
+    //     if(a[i] ==b[j]){
+    //           j++;
+    //       } 
+    // }
+    // if(j == b.length) // iska mltb h ki hm check krne kbaad last index pr pahunch gye h
+    //     return true;
+    //     return false;
+    
+    
+        // 11,1  == rm                            //   11,1
+        // 7,2                  b=11,3,3,7,1,7,3
+        // 1,1
+        // 13,1
+        // 21,1
+        // 3,2
+        
+        // --------------------------------m-3----------------------
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i =0;i<a.length ;i++) {
+            map.put(a[i],map.getOrDefault(a[i],0)+1);//agr present h to value fdega agr nhi to 0 dega + count
+        }for(int i =0;i<b.length;i++) {
+            if(!map.containsKey(b[i])) return false; 
+            else if(map.get(b[i]) == 1) //sirf value count agr 1 to remove
+            {
+                map.remove(b[i]);
+            } else {
+               map.put(b[i],map.getOrDefault(b[i],0)-1); //3,2 h to next tym 3,2 phr 3,1 phr 3,0
+            }
+        
+        }
+        return true;
+        
+    }
+    
+}
