@@ -1,0 +1,23 @@
+class Solution {
+    public int trap(int[] height) {
+      int n = height.length;
+      int i = 0;
+      int j = n-1;
+      int iMax = 0; // to update heigth
+      int jMax = 0;// to update right height
+      int water = 0;
+      while(i<j) {
+        if(height[i]<=height[j]) {
+            if(iMax<=height[i]) iMax = height[i];
+            else water += iMax-height[i];
+            i++; //koi 1 hi badhega 1 vaar me
+        }else {
+            if(jMax<height[j]) jMax = height[j];
+            else water += jMax-height[j];
+             j--;
+        }
+    
+      }  
+      return water; 
+    }
+}
