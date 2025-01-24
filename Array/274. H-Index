@@ -1,0 +1,14 @@
+class Solution {
+    public int hIndex(int[] citations) {
+        // jaise 3,0,6,1,5 citation mtlb 3 se bara no us array me 3 se baraa ya equal aana chahiye
+        Arrays.sort(citations);
+        int count = 0;
+        int n = citations.length;
+        for(int i = n-1;i>=0;i--) {
+            if(citations[i]>count) { //last se start krenge b'coz hme maxm se start krnaa
+                count++;
+            }else break;
+        }
+        return count;
+    }
+}
