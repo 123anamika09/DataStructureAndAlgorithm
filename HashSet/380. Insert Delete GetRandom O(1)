@@ -1,0 +1,34 @@
+class RandomizedSet {
+// LinkedHashSet (Maintains insertion order):
+// TreeSet (Maintains sorted order)
+
+// While a Set works for managing unique elements and provides
+// O(1) for insertion, deletion, and lookup operations in many implementations (like HashSet), it doesn't help us efficiently achieve random access or maintain the positional information needed to implement getRandom() in O(1).
+
+// Set: Ensures uniqueness and fast operations like insertion and deletion but lacks the positional information required for random access.
+// HashMap + ArrayList: Combines the fast lookup/removal of HashMap with the positional access of ArrayList.
+    //add set no to arr , to get index .. no indx in set
+    HashSet<Integer>set;
+    
+    public RandomizedSet() {
+      set = new HashSet<>();
+      
+    }
+    public boolean insert(int val) {
+       return set.add(val); //return boolean
+    }
+    public boolean remove(int val) {
+       if(!set.contains(val)) return false;
+       set.remove(val) ;
+       return true;  
+    }
+    public int getRandom() {
+        ArrayList<Integer>arr  = new ArrayList<>();
+       for(int i : set){ //no indx in set so we use for each loop
+           arr.add(i);
+       }
+       Random random =  new Random(); //method to generate random
+       int random_store = random.nextInt(arr.size());
+       return arr.get(random_store);
+    }
+}
