@@ -1,0 +1,33 @@
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        for(int i =0;i<9;i++){ //baar baar row & col ko check krn k liye
+          HashSet<Character> row = new HashSet<>(); // baar baar update .. jb jb new i bnega tb tb hashset change
+          HashSet<Character> col = new HashSet<>();
+           for(int j = 0;j<9;j++) {
+              char row_ch = board[i][j];
+              char col_ch = board[j][i]; //check one characetr repeat in one col or one row
+              if(row_ch >=48 && row_ch<=57 && row.contains(row_ch)) return false;
+              if(col_ch >= 48 && col_ch <= 57 && col.contains(col_ch)) return false;
+              row.add(row_ch);
+              col.add(col_ch); // j change kr rha i to fixed hi h  
+          }
+          
+        }
+        for(int i = 0;i<9;i++){
+            HashSet<Character> box_set = new HashSet<>();
+            int row = (i/3)*3;
+            int col = (i%3) *3; // i = 1 2nd wala grid start (0,3)
+            for(int j =row;j<row+3;j++){
+                //traverse in  row loop
+                for(int k = col;k<col+3;k++){ //traverse in col
+                   char box_ch = board[j][k];
+                   if(box_ch!='.' && box_set.contains(box_ch)) return false;
+                   if(box_ch!='.') 
+                     box_set.add(board[j][k]);
+                }
+
+            }
+        }
+        return true;
+    }
+}
