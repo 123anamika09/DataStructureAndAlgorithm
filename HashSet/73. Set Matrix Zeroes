@@ -1,0 +1,29 @@
+class Solution {
+    public void setZeroes(int[][] matrix) {
+       int m = matrix.length;
+       int n = matrix[0].length; 
+       boolean firstColZero = false;
+       HashSet<Integer> row = new HashSet<>();
+       HashSet<Integer> col = new HashSet<>();
+       //do it then whole matrix becoes zero .. so we store in which row n colm has 0
+       for(int i = 0;i<m;i++) { 
+        for(int j = 0;j<n;j++){
+           if(matrix[i][j] == 0) {
+            row.add(i);
+            col.add(j); // 0,3 add in the zero
+            }
+          }
+        }
+       for(int num:row){
+        for(int i = 0;i<n;i++) {
+             matrix[num][i] = 0;
+        }
+       }
+       for(int num:col) {
+        for(int j = 0;j<m;j++) {
+              matrix[j][num] = 0;// change j ho rha n col so 
+        }
+       }
+
+    }
+}
