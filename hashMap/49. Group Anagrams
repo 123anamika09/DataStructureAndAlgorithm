@@ -1,0 +1,19 @@
+class Solution {
+    public String sort_ch(String s){
+            char[] ch = s.toCharArray();
+            Arrays.sort(ch);
+            return new String(ch); // string return
+    }
+    public List<List<String>> groupAnagrams(String[] strs) {
+       ArrayList<ArrayList<String>> arr = new ArrayList<>();
+       HashMap<String,List<String>> map = new HashMap<>();  // return list so 
+       for(String str :strs) {
+       String ss =  sort_ch(str); 
+       map.putIfAbsent(ss,new ArrayList<>()) ; // absent rhega tvii arraylist bnega ...a
+    //    ur agr strig present rhega to hm us arraylist me value put kr denge
+       map.get(ss).add(str);
+    
+       }
+       return new ArrayList<>(map.values());
+    }
+}
