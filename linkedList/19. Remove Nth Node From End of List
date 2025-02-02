@@ -1,0 +1,16 @@
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode first = head, second = head;
+        for(int i = 0;i<n;i++) {
+            first = first.next;
+        }if(first == null){
+            return head.next;//remove head
+        }while(first.next!=null)
+        {
+            first = first.next;
+            second = second.next;
+        } 
+        second.next = second.next.next;// Update the next pointer of second to skip the Nth node.
+         return head;
+    }
+}
