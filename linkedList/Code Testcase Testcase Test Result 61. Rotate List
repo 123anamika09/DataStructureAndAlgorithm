@@ -1,0 +1,29 @@
+
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+        if(head == null || head.next == null || k ==0) return head;
+        ListNode current = head;
+        int count = 0;
+        while(current!=null) {
+            current = current.next;
+            count++; //length
+        }
+        k=k%count;
+        current = head; //current ko null kr rkhe n so
+       if(count == k) return head;  
+        for(int i = 0; i< count-k-1;i++){
+            current = current.next; //traverse only
+        } ListNode  store =current.next;
+          ListNode store2 = store; //both at 4
+         current.next = null; //loop khm hone k baad null
+        //  if(store==null) return head;
+        if(store!=null){
+          while(store.next!=null) {
+            store = store.next;
+          }
+          store.next = head; //aage jakr null kr denge
+          return store2;
+        }else return head;
+        
+    }
+}
