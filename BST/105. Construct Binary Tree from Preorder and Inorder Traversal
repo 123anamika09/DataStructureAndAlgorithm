@@ -1,0 +1,23 @@
+class Solution {
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        if(preorder.length == 1 && inorder.length == 1)return new TreeNode(preorder[0]);
+        return solve(preorder, inorder, 0, preorder.length - 1, 0, inorder.length - 1);
+    }
+    public TreeNode solve(int[] p, int[] i, int psi, int pei, int isi, int iei){
+        if (isi > iei)
+            return null;
+              //pre ka 1st root
+        TreeNode nn = new TreeNode(p[psi]);
+        int val = p[psi];
+        int idx = isi;
+        while(i[idx] != p[psi]){
+            idx++;
+        }
+        int te = idx - isi;
+        nn.left = solve(p, i, psi + 1, psi + te, isi, idx - 1);
+         nn.right = solve(p, i, psi + te + 1, pei, idx + 1, iei);
+        //right
+
+        return nn;
+    }
+}
