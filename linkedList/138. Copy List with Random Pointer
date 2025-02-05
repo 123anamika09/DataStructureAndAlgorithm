@@ -1,0 +1,31 @@
+
+class Solution {
+    public Node copyRandomList(Node head) {
+        HashMap<Node,Node>map = new HashMap<>();
+        Node curr = head; 
+        Node tempAdd = new Node(-1); // 1 address fixed rkhna hoga n taaki aage hm usko badhate rhe // constructor h to koi value ena hoga n so -1
+        Node store = tempAdd ; //store 7 for new node
+
+        while(curr!=null) {
+            Node copy = new Node(curr.val);
+            map.put(curr,copy);
+            tempAdd.next = copy; // tmpAdd bhr bna h n to isme copy ko store v krna parega
+            tempAdd = tempAdd.next; 
+            curr = curr.next;
+        } 
+        curr = head;
+        store = store.next; // remove -1
+        Node tempStore = store;
+        
+        while(curr!=null) {
+            if(curr.random!=null){
+            store.random = map.get(curr.random); // mapping se jisse map rhega wo mkl jayega
+            }
+             store = store.next;
+             curr = curr.next;
+
+        }
+        return tempStore;
+ 
+    } 
+}
