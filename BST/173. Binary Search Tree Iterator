@@ -1,0 +1,24 @@
+
+class BSTIterator {
+    // we use stack bcause all the operation performed on stack takes o(1) t.c
+    // *****Morris Traversal is a tree traversal algorithm that traverses a binary tree in O(1) space complexity without using recursion or a stack. It does this by modifying the tree temporarily by creating and later removing "threads" (temporary links).*********
+    //inorder of bst is always sorted
+    ArrayList<Integer> arr ;// arrayList ko declare kr skte h bt object nhi bna skte global
+    public void Inorder(TreeNode root) {
+        if(root== null) return;
+        Inorder(root.left);
+        arr.add(root.val);
+        Inorder(root.right);
+    } 
+    // 3 7 9 15 20
+    public BSTIterator(TreeNode root) {
+         arr = new ArrayList<>();
+         Inorder(root);
+    } 
+    public int next() {
+        return arr.remove(0);
+    }
+    public boolean hasNext() {
+       return !arr.isEmpty();
+    }
+}
