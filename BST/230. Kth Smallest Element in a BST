@@ -1,0 +1,32 @@
+class Solution {
+              // Recursive Inorder (Early Stop) → Best for readability & efficiency
+             // Iterative (Stack) → Avoids recursion stack overflow
+            // Heap Approach → Not recommended due to extra space
+
+
+// For small to medium BSTs → Recursive Inorder with Early Stop (simple & efficient).
+// For large BSTs and avoiding recursion stack → Iterative Inorder (Stack).
+// When k is much smaller than n → Max Heap.
+// When you need O(1) extra space → Morris Traversal.
+
+
+        int result = -1; //Stores the kth smallest element
+        int count = 0;
+    public void Inorder(TreeNode root , int k) {
+
+        if(root == null) return ;
+        Inorder(root.left, k ); // comes in sorted 
+        count++;  //process the current node
+        if(count == k) { // stop extraversal
+            result = root.val;
+            return;
+        }
+        
+        Inorder(root.right,k);
+
+    }
+    public int kthSmallest(TreeNode root, int k) {
+        Inorder(root, k);
+        return result;
+    }
+}
