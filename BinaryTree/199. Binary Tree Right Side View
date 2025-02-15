@@ -1,0 +1,22 @@
+class Solution {
+//    in my right-side view problem, we are not following a strict postorder traversal. Instead, we are using a modified     depth-first traversal that prioritizes the right subtree first.
+    // Right → Left (not PostOrder)
+    public void modified_PostOrder(TreeNode root,int curr_level,int[] max_level,ArrayList<Integer>result) {
+        if(root == null) return ;
+        if(curr_level>max_level[0]) {
+            // result.add(PostOrder(root.val));  //result.add(x) expects an integer (int) but modified_PostOrder(root.val) is not valid because modofied_PostOrder is void fnc.
+             result.add(root.val);
+            max_level[0] = curr_level;
+        }
+        modified_PostOrder(root.right,curr_level+1,max_level,result);
+        modified_PostOrder(root.left,curr_level+1,max_level,result);
+       
+    }
+    public List<Integer> rightSideView(TreeNode root) {
+         //travel level wise maintain a max level (array) store till not greater.. if currentlevel is greater that  max level print current  level & update the max level
+         ArrayList<Integer> result = new ArrayList<>();
+          int[] max_level = new int[]{-1}; // initialise the arr with 1st element -1 
+          modified_PostOrder(root, 0, max_level,result);
+          return result;
+    }
+}
