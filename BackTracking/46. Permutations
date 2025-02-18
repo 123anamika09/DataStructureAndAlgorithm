@@ -1,0 +1,24 @@
+class Solution {
+    List<List<Integer>> Allarrangement = new ArrayList<>();
+    public void backtrack(List<Integer>first_param ,List<Integer> sec_param){
+    if(first_param.size() == 0){
+        Allarrangement.add(sec_param);
+      }
+      for(int i = 0;i<first_param.size();i++){
+       
+       List<Integer> a = new ArrayList<>(sec_param);
+      List<Integer> arr = new ArrayList<>(first_param);
+      a.add(first_param.get(i));
+      arr.remove(i);
+      backtrack(arr,a);
+      } 
+ 
+    }
+    public List<List<Integer>> permute(int[] nums) {
+     List<Integer> curr_arr = new ArrayList<>(); // nums ko curr array me add
+        for(int num:nums) curr_arr.add(num);
+        backtrack(curr_arr,new ArrayList<>());
+        return Allarrangement;
+    }
+
+}
