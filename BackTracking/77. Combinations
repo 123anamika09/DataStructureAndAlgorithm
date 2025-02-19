@@ -1,0 +1,54 @@
+// class Solution {
+    // List<Integer> curr_combination = new ArrayList<>();
+    // List<List<Integer>>Allcombination = new ArrayList<>();
+    // public void backtrackDFS(int n, int k , int start_idx){
+    //     if(start_idx > n) return ;  // base case
+
+    //     if(curr_combination.size() == k) {
+    //         Allcombination.add(new ArrayList<>(curr_combination)); // baar baar curr_combination bnega
+              
+    //            // move to next index & remove prev
+    //     curr_combination.remove(curr_combination.size()-1);
+    //         return;
+    //     } 
+
+    //     curr_combination.add(start_idx);  // add the idx
+    //     backtrackDFS(n,k, start_idx+1); // increse the idx
+    //     if(curr_combination.size()>0)
+    //    curr_combination.remove(curr_combination.size()-1);
+       
+    // }
+    // public List<List<Integer>> combine(int n, int k) {
+    //      for(int i=1;i<=n;i++){
+    //        backtrackDFS(n,k,i);}
+    //        return Allcombination;  
+
+
+// }
+// }
+
+//--------------------------corrected code --------------------------------------------------------------------------------
+    class Solution {
+    List<Integer> curr_combination = new ArrayList<>();
+    List<List<Integer>>Allcombination = new ArrayList<>();
+    public void backtrackDFS(int n, int k , int start_idx){
+        //if(start_idx > n) return ;  // base case
+        if(curr_combination.size() == k) {
+            Allcombination.add(new ArrayList<>(curr_combination)); // baar baar curr_combination bnega
+            return;
+        }
+               // move to next index & remove prev
+               for(int i=start_idx;i<=n;i++){
+                curr_combination.add(i);
+                 backtrackDFS(n,k,i+1);
+                 curr_combination.remove(curr_combination.size()-1);
+            }
+        //curr_combination.add(start_idx);  // add the idx
+        //backtrackDFS(n,k, start_idx+1); // increse the idx
+           }
+    public List<List<Integer>> combine(int n, int k) {
+           backtrackDFS(n,k,1);
+           return Allcombination;  
+    }
+}
+    
