@@ -1,0 +1,22 @@
+public class Solution {
+    // you need treat n as an unsigned value
+    public int reverseBits(int n) {
+        // String str = Integer.toBinaryString(n);
+        // int x = Integer.parseInt(str,2);
+        // int rev = 0;
+       
+        // while(x!=0) {
+        //     int digit = x%10;
+        //      rev = rev*10+digit;
+        //     x = x/10;
+        // }
+
+        // return rev;
+
+        String binaryString = String.format("%32s", Integer.toBinaryString(n)).replace(' ', '0');
+        String reversedString = new StringBuilder(binaryString).reverse().toString();
+        int result = (int) Long.parseLong(reversedString, 2);
+        return result;
+
+    }
+}
