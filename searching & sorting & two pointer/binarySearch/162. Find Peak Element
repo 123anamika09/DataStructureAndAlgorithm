@@ -1,0 +1,21 @@
+class Solution {
+    public int findPeakElement(int[] nums) {
+//           O(log n) time
+//              Binary Search
+//      Finding largest/smallest number in a binary search tree
+//      Certain Divide and Conquer Algorithms based on Linear functionality
+//      Calculating Fibonacci Numbers - Best Method The basic premise here is NOT using the complete data, and reducing     problem size with every iteration 
+        int low = 0;
+        int n = nums.length-1;
+        int high = n;
+        while(low<high) {
+         int mid = low+(high-low)/2;
+            if(nums[mid]>nums[mid+1])
+            {
+            high = mid;
+            }
+            else low = mid+1;
+         }
+         return low;
+    }
+}
