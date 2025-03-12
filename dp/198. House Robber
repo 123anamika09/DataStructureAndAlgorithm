@@ -1,0 +1,40 @@
+class Solution {
+
+
+    // -----------------------by solving using recursion we get TLE  
+
+
+    // public int helper(int i , int[] nums){
+    //      // skip n take -- ya to chorii ya nhiii 
+    // if( i >= nums.length) return 0;
+    //   int skip = helper(i+1, nums);  
+    //   int take = nums[i]+helper(i+2,nums);
+    //   return Math.max(skip, take);
+    // }
+    // public int rob(int[] nums) {
+    //     // solve it using recurision + memoization
+    //       return helper(0,nums);
+    // }
+
+    //    -----------------m-2----------------------------------
+
+     public int helper(int i , int[] nums, int[] dp){
+         // skip n take -- ya to chorii ya nhiii 
+           if( i >= nums.length) return 0;
+           if(dp[i]!= -1) return dp[i]; //phle hm find kr rkhe honge
+           
+            int skip = helper(i+1, nums,dp);  
+            int take = nums[i]+helper(i+2,nums,dp);
+            return dp[i] = Math.max(skip, take);
+           }
+     public int rob(int[] nums) {
+        // solve it using recurision + memoization
+        int[] dp = new int[nums.length];
+        for(int i = 0;i<nums.length;i++) {
+            dp[i] = -1;  // initially takes -1
+        }
+        
+          return helper(0,nums,dp);
+    }
+
+}
