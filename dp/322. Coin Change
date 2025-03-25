@@ -15,3 +15,41 @@ class Solution {
         return minCoins[amount] != amount + 1 ? minCoins[amount] : -1;        
     }
 }
+
+
+
+
+//------------------------------ method-2--------------------------------------------------------
+class Solution {
+    
+    public long helper(int[]coins, int amount ,long[][]dp, int i){
+      
+   if(i==coins.length  ){
+        if(amount == 0) {
+            return 0;
+        }else return Integer.MAX_VALUE;
+       }
+    //    skip & take
+    if(dp[i][amount] != -1) return dp[i][amount];
+    
+    long skip = helper(coins, amount, dp, i+1);
+    if(amount-coins[i]<0)return skip;
+    long take =1 + helper(coins,amount-coins[i], dp , i); //  1 no lle liye 
+
+      return dp[i][amount]= Math.min(skip,take);
+    
+    
+    }
+    public int coinChange(int[] coins, int amount) {
+          int n = coins.length;
+          long[][] dp = new long[n][amount+1];  // if idx = 0 then 0 to 10 so + 1   
+          for(int i = 0;i<n;i++){
+            for(int j =  0;j<amount+1;j++){
+                dp[i][j] = -1;
+            }
+          }  
+        int store =(int) helper(coins,amount,dp,0);
+        if(store==Integer.MAX_VALUE) return -1;
+          return store;
+    }
+}
