@@ -6,6 +6,8 @@ class Solution {
         int right = m*n-1;  // in matrix we use this
         while(left<=right) {
             int mid = left + (right-left)/2;
+            // row = mid/n 
+            // col = mid%n
             int midValue = matrix[mid/n][mid%n]; //Convert 1D index to 2D matrix indices
             if(midValue == target) return true;
             else if(midValue>target)  right = mid-1;
