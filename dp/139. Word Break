@@ -1,0 +1,21 @@
+class Solution {
+    
+    public boolean wordBreak(String s, List<String> wordDict) {
+        //   greedy approach is wrong for this case wordDict = ["aaa","aaaa"]   , s = “aaaaaaaa",
+        boolean[] arr = new boolean[s.length()+1];
+        int n = arr.length;
+        arr[0] = true;
+        for(int i = 1;i<=s.length();i++){
+            for(int j = 0;j<s.length();j++){
+                if(arr[j] == true && wordDict.contains(s.substring(j,i))){ 
+                    // check like 1st l then le then lee then leet then leet is found then mark it as true again start checking for next index & if the last index is true then retrun true;
+                    arr[i] = true; // j se to start kr rhe h n
+                    break; //found
+                }
+     
+
+            }
+        }
+        return arr[n-1]; // llast index return // either true or false
+    }
+}v
