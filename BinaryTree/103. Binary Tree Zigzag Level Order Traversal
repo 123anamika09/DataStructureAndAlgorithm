@@ -1,0 +1,20 @@
+
+class Solution {
+//  [9,20] == then 20 ko hm 0 index pr daalrnge aur 9 ko 1 index pr
+    public void helper(TreeNode root, int level,List<List<Integer>> arr){ 
+        if(root == null) return;
+        if(arr.size()<=level) arr.add(new ArrayList<>()); //create a list at every level
+    //  level order allways left to right work if level is even  1,2,3 === 3,2,1(put) 
+        if(level%2==0 ) arr.get(level).add(0,root.val); // agr mere arraylist me right se left daalna ho to phle hm push krenge aur 0 index pr value daalte jayenge 
+
+        else arr.get(level).add(root.val); // odd k liye simpplii hm add kr rhee ..
+         helper(root.right, level+1, arr);   
+         helper(root.left, level+1, arr);       
+    }
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> arr = new ArrayList<>();
+        helper(root,0,arr);
+        return arr;
+        
+    }
+}
