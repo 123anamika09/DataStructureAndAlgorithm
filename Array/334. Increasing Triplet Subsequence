@@ -1,0 +1,28 @@
+class Solution {
+    public boolean increasingTriplet(int[] nums) {
+        int n = nums.length;
+        if (n < 3) return false; 
+        // m-1 give tle error
+        // for (int i = 0; i < n - 2; i++) {  // Start from the first element
+        //     for (int j = i + 1; j < n - 1; j++) {  // Second element after i
+        //         for (int k = j + 1; k < n; k++) {  // Third element after j
+        //             if (nums[i] < nums[j] && nums[j] < nums[k]) {
+        //                 return true;  // Found a valid triplet
+        //             }
+        //         }
+        //     }
+        // }
+        // return false;
+
+        // m-2--------
+        int first = Integer.MAX_VALUE;
+        int second = Integer.MAX_VALUE;
+        for(int num:nums) {
+            if(num<=first) first=num ;
+            else if(num<=second) second = num;
+            else return true;
+
+        }
+        return false;
+    }
+}
