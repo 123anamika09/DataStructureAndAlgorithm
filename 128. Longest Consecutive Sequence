@@ -1,0 +1,33 @@
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        // O(n) means no sorting...
+        // HashSet<Integer> set = new HashSet<>();
+        // for(int num:nums){
+        //     set.add(num);
+        // }
+        // int maxLength = 0;
+        //    for(int num: nums){
+            
+        //    }//1 2 3 4 100 200
+
+        Arrays.sort(nums);
+        int maxLength = 1;
+        int count = 1;
+        int n = nums.length;
+        if(n==0) return 0;
+    
+        for(int i = 0;i<n-1;i++){
+            if(nums[i] == nums[i+1]) continue;
+            if(nums[i]==nums[i+1]-1){ //yha pr consecutive ka mtlb h 1 k baad 2 aaywga then 3  ... & so on
+                count++;
+                maxLength  = Math.max(maxLength, count);
+            }
+            else {
+                count = 1;
+                continue;
+            }
+
+        }
+        return maxLength;
+        }
+}
