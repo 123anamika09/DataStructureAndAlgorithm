@@ -1,0 +1,16 @@
+class Solution{
+public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null || root == p|| root == q) { //help propagate the found node upward in recursion
+            return root;
+        }
+        TreeNode left =  lowestCommonAncestor(root.left , p , q); //store the result from the left subtree
+        TreeNode right = lowestCommonAncestor(root.right , p , q);  
+        if(left!=null  && right!=null) return root; //If both sides return non-null  That means p and q were found in different subtrees. So, the current root is the Lowest Common Ancestor, and we return it.
+        return left!=null ? left:right;  
+// If only one of the sides is non-null:
+// This means both p and q are in the same subtree, or one of them was not found yet.
+// So return the non-null one, which may either be:
+// One of p or q, or
+// The LCA found deeper in the tree.
+    }
+}
