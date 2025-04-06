@@ -1,0 +1,24 @@
+class Solution {
+    public int maxSubarraySumCircular(int[] nums) {
+        // circle has no starting point no end point 
+        //  anticlockwise & clockwise 2no chl skte h 
+        // -3  -2 -1 
+        // 1 , -2 , 3 , -2  minm subArray SUm = -2 +-1+3 = -3
+        int total_sum = 0;
+        int n = nums.length;
+        int maxSum = Integer.MIN_VALUE;
+        int minSum = Integer.MAX_VALUE;
+        int currMaxSum = 0;
+        int currMinSum = 0;
+
+        for(int i = 0;i<n;i++){
+            total_sum = total_sum+nums[i]; //think about the step -- solve on copy step by step 
+            currMaxSum = Math.max(nums[i],currMaxSum+nums[i]);
+            maxSum = Math.max(maxSum, currMaxSum);
+            currMinSum = Math.min(nums[i], currMinSum+nums[i]);
+            minSum = Math.min(minSum, currMinSum);
+        }
+         return maxSum<0 ? maxSum:Math.max(maxSum,total_sum - minSum);
+
+    }
+}
