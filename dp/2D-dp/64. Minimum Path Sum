@@ -1,0 +1,22 @@
+class Solution {
+    public int minPathSum(int[][] grid) {
+        //  same as traingle conecpt here we also add row & colm & check minm 
+        int m = grid.length;
+        int n = grid[0].length;
+        int[][] dp = new int[m][n];
+        dp[0][0] = grid[0][0];
+        for(int i = 1;i<m;i++){ //row ka sum ho rha 
+            dp[i][0] = dp[i-1][0]+grid[i][0];
+        }
+        for(int j = 1;j<n;j++){ // column ka sum
+            dp[0][j] = dp[0][j-1]+grid[0][j];
+        }
+        for(int i = 1;i<m;i++){
+            for(int j =1;j<n;j++){
+               dp[i][j] = Math.min(dp[i-1][j], dp[i][j-1]) + grid[i][j];// yha dp[i-1][j] bta rha 3 se 5 pr jaane ka sum aur dp[i][j-1] bta rha 1 se 5 tk jaane ka sum ab hme in dno me se jo min hoga usko lena h  aur usme us grid ka value v to add krenge 
+            }
+        }
+        return dp[m-1][n-1]; // last me jb m sum kr k aayenge to last inedex pr min value hoga so w returen this
+
+    }
+}
