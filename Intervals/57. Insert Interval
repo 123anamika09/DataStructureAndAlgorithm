@@ -1,0 +1,30 @@
+class Solution {
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+         ArrayList<int[]> arr = new ArrayList<>();
+          //phle arraylist me array store krenge phr us arrayList ko arrya me convert kr denge
+          int n = intervals.length;
+          int i = 0;
+            while(i<n && intervals[i][1] < newInterval[0])
+            {
+                arr.add(intervals[i]); // interval to 2d array h n aur jb merger nhi hoga to hme pura arr daalna hoga n -- arr pura daalna h so we write  intervals[i]
+                i++;
+            }
+            while(i<n && intervals[i][0]<=newInterval[1]){ // yha pr jb hm merge krenge to 1 ka min aur dusre ka max lenge
+            newInterval[0] = Math.min(intervals[i][0] , newInterval[0]);
+            newInterval[1] = Math.max(intervals[i][1], newInterval[1]) ; // 2nd element
+              i++;
+            }
+
+
+            arr.add(newInterval);
+            //jo merge kr k aaya h usko put kre h n .... 
+            //ab jo bacha hua h usko add krenge1
+            while(i<n ) {
+               arr.add(intervals[i]);
+               i++;
+            }
+
+            return arr.toArray(new int[arr.size()][]);
+
+             }
+}
