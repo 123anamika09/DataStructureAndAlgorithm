@@ -1,0 +1,22 @@
+class Solution {
+    public int findMinArrowShots(int[][] points) {
+        // Assume ballon as circle which has no height
+        //  same as interval quest where merge is happen  
+        //  in interval quest array is sorted so here 1st sort it
+        int arrow = 1;
+        // sort -- use custom comparator
+        Arrays.sort(points, (a, b) -> Integer.compare(a[1], b[1])); // for comaparing on the basis of 1st index for 2d array
+        int n = points.length;
+        int i = 1;
+        int end=points[0][1];
+        while( i<n) {
+            if(points[i][0]>end){ // for  not merge
+                 arrow++; 
+                 end = points[i][1];       
+            } 
+            i++;
+        }
+        return arrow;
+
+    }
+}
