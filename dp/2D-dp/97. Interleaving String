@@ -1,0 +1,32 @@
+class Solution {
+    // bare wale Boolean me bydeault value null hota h 
+    //  chote wale boolean me by default value false hota h
+    // int - value 0 by default
+    // Integer - null
+    public boolean helper(Boolean[][]dp,String s1, String s2, String s3, int i, int j){
+        if((i>=s1.length() && j>=s2.length()) && i+j>=s3.length()) return true; // check & i++ conecpt 
+        // now checcking & matching started 
+        Boolean returntypeForHelper =  false; 
+        if(i<s1.length() && s1.charAt(i) == s3.charAt(i+j)){
+          returntypeForHelper =   helper(dp,s1,s2,s3,i+1,j);
+          
+        }
+        // dp condition
+        if(dp[i][j] != null){
+          return dp[i][j];
+        }
+        if(returntypeForHelper)//check condition itself true or false
+         return dp[i][j] = returntypeForHelper;
+        
+         if(j<s2.length() && s2.charAt(j)== s3.charAt(i+j)) {
+            returntypeForHelper = helper(dp,s1,s2,s3,i,j+1);
+        }
+         return dp[i][j] = returntypeForHelper;
+    }
+    public boolean isInterleave(String s1, String s2, String s3) {
+        if(s1.length()+s2.length()!= s3.length()) return false;
+        Boolean[][] dp = new Boolean[s1.length()+1][s2.length()+1]; // +1 == 1 aage lekr chalte
+        //  order should be same here order means abc & def then a comes before b ,b comes before c ,d comes before e & e commes before f 
+       return helper(dp,s1,s2,s3,0,0);
+    }
+}
