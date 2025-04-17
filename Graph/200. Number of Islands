@@ -1,0 +1,49 @@
+//  Algorithm Steps
+// Initialize a counter to count islands.
+// Traverse the entire grid:
+   // If a cell is '1':
+    // Increment the island counter.
+    // Launch DFS to mark all connected '1's as '0' (to mark them visited).
+// DFS:
+// From a cell, recursively explore in 4 directions (up, down, left, right).
+// If the neighbor is '1', mark it '0' and continue the DFS.
+
+class Solution {  
+     
+    public void gridVisited(char[][]grid, boolean[][]isVisited,int i , int j){
+        
+        if(i<0 || j<0 || grid[i][j] == '0') return ;
+        if(isVisited[i][j] == true) return;
+        isVisited[i][j]= true;
+        if((i-1>=0 && grid[i-1][j]=='1') && (isVisited[i-1][j] != true))
+               gridVisited(grid,isVisited,i-1,j); // top 
+        if((i+1<grid.length && grid[i+1][j]=='1') && isVisited[i+1][j] != true)
+          gridVisited(grid,isVisited,i+1,j); // down 
+        if((j-1>=0 && grid[i][j-1]=='1') && isVisited[i][j-1] != true)
+            gridVisited(grid,isVisited,i,j-1); //left
+        if((j+1<grid[0].length && grid[i][j+1]=='1') && isVisited[i][j+1] != true)
+              gridVisited(grid,isVisited,i,j+1); // right     
+        }
+    public int numIslands(char[][] grid) {
+       int rows = grid.length;
+       int col = grid[0].length;
+       int count = 0;
+       boolean[][] isVisited = new boolean[rows][col]; //boolean - false
+       if(grid == null||grid.length == 0) return 0;
+       for(int i = 0;i<rows;i++){
+        for(int j = 0 ;j<col;j++){
+            if(isVisited[i][j]== false){
+            if(grid[i][j] == '1'){
+                count++;
+                gridVisited(grid,isVisited,i,j);
+            }
+
+            }
+           
+        }
+        
+       }
+         return count;
+      
+    }
+}
