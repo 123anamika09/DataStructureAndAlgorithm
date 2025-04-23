@@ -1,0 +1,45 @@
+
+class Solution {
+
+    // [[2,4],[1,3],[2,4],[1,3]] 
+    // yha pr hm node 1 pr jayenge to uske kon kon se neighbor h 2 & 4 so wo [2,4] diya same 2 node pr jayenge to [1,3] return ho jayegea
+    // node.neighbor == [2,4] like this we get
+    public Node cloneGraph(Node node) {
+          // 1 <= Node.val <= 100
+       if(node==null) return null;     
+       Node[] isVisited = new Node[101]; 
+       Node firstCopy = new Node(node.val); 
+       isVisited[node.val] = firstCopy; //store the address to visited
+       for(Node currNode : node.neighbors)
+           {
+            //  ab hm 2 pr aayenge to 2 pr ye v to ho skta ki wo not visited ho mlb null ho , mtlb ki uska copy na bna ho to 
+            if(isVisited[currNode.val]==null)  {
+                Node deepCopy = new Node(currNode.val); //
+                firstCopy.neighbors.add(deepCopy);
+                dfs(currNode, isVisited, deepCopy);
+            }else{
+                 firstCopy.neighbors.add(isVisited[currNode.val]);
+            } 
+
+           } 
+            return firstCopy; 
+
+    }
+        
+    public void dfs(Node currNodes, Node[] isVisited, Node deepCopies){
+           isVisited[currNodes.val] = deepCopies; // deepcopy ka address add in isVisited
+            for(Node currNode : currNodes.neighbors)
+           {
+            //  ab hm 2 pr aayenge to 2 pr ye v to ho skta ki wo not visited ho mlb null ho , mtlb ki uska copy na bna ho to 
+            if(isVisited[currNode.val]==null)  {
+                Node deepCopy = new Node(currNode.val); 
+                deepCopies.neighbors.add(deepCopy);
+                dfs(currNode, isVisited, deepCopy);
+            }  else{
+                 deepCopies.neighbors.add(isVisited[currNode.val]);
+            }
+           } 
+           
+    }
+
+}
