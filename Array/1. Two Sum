@@ -1,0 +1,15 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        int n = nums.length;
+        int[] ans = new int[2];
+        for(int i = 0;i<n;i++){
+            if(map.containsKey(target-nums[i])){
+                ans[0] = i;
+                ans[1] = map.get(target-nums[i]); 67
+            }
+              map.put(nums[i],i); // phle check krega ki map k under value h ya nhiii to phle  to 1st tym if condition false hoga aur map me sb key value add ho jayega (2,0) , (7,1)  pura add nhii hoga 
+        }
+        return ans;
+    }
+}
