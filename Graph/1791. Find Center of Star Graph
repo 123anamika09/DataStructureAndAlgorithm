@@ -1,0 +1,24 @@
+class Solution {
+    public int findCenter(int[][] edges) {
+        
+// edges is a 2D array: int[][] edges.
+// Each element of edges is an int[], representing one edge.
+// Example: If edges = {{1, 2}, {1, 3}}, then:
+// edges[0] = {1, 2}
+// edges[1] = {1, 3}
+int n = edges.length + 1;
+int[] degrees = new int[n+1];
+for(int[] edge:edges){
+    degrees[edge[0]]++;
+    degrees[edge[1]]++;
+}
+for(int i = 0;i<=n;i++){
+    if(degrees[i] == n-1) {
+        return i;
+    }
+   
+}
+ return -1;
+
+    }
+}
