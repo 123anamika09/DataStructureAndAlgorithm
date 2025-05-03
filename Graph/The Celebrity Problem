@@ -1,0 +1,29 @@
+
+class Solution {
+    public int celebrity(int mat[][]) {
+        // code here
+        // int n = mat[0].length;
+        int m = mat.length;
+        // m & n ssame == sqaure matrix
+        int[] addAndSub = new int[m];
+            // hm jisko jante h to usme ++ & khud me se -- 
+            // 0, 1, 0 ka mtlb 1st person 1st ko janta mtlb khud ko 
+            // [1,1,0] yha 2nd 1 ka mtlb h 0th person 1st person ko janta  
+            //  [1,1,0] - 0th person ko 
+            // [0,1,0] - 1st perosn lko
+          for(int i = 0;i<m;i++){
+              for(int j = 0 ;j<m;j++){
+                   if(mat[i][j] == 1) {
+                      addAndSub[i]--;
+                       addAndSub[j]++;
+                   }
+                   
+              }
+          }  
+          for(int i = 0;i<m;i++){
+              if(addAndSub[i] == m-1) return i;
+          }
+        
+        return -1;
+    }
+}
