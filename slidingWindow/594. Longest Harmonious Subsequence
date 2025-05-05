@@ -1,0 +1,16 @@
+
+class Solution {
+    public int findLHS(int[] nums) {
+         HashMap<Long,Integer>map = new HashMap<>();
+        for(long i: nums){
+            map.put(i,map.getOrDefault(i,0)+1);
+        }
+        int result = 0;
+        for(long key : map.keySet()){
+            if(map.containsKey(key+1)){
+                result = Math.max(result,map.get(key+1)+map.get(key));
+            }
+        }
+        return result;
+    }
+}
