@@ -1,0 +1,15 @@
+
+class Solution {
+    public int getDecimalValue(ListNode head) {
+        String str = "";
+        ListNode temp = head;
+        while(temp!=null) {
+            str = str + temp.val;
+            temp = temp.next;
+        }
+
+        //  convert binary string to decimal
+        int decimal = Integer.parseInt(str.toString(),2);
+        return decimal;
+    }
+}
