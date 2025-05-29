@@ -1,0 +1,41 @@
+class MyQueue {
+     Stack<Integer> st;
+     Stack<Integer> s ;
+    public MyQueue() {
+        st = new Stack<>();
+        s  = new Stack<>();
+    }
+    
+    public void push(int x) {
+          st.push(x);
+ // while(st.isEmpty())  checks if the stack is empty.
+// If it's empty, the condition is true, so st.push(x) runs once.
+// After pushing x, the stack is no longer empty, so the loop exits.
+         
+    }
+    
+    public int pop() {
+        if(s.isEmpty() ){
+            while(!st.isEmpty()){
+               s.push(st.pop());
+            }
+        }
+        return s.pop();
+        
+    }
+    
+    public int peek() {
+        //  int n =  pop();   currently, your pop() function removes the front element — and peek() is supposed to only return it, not remove it. So calling pop() directly inside peek() would remove the element, which violates queue behavior
+
+        if(s.isEmpty() ){
+            while(!st.isEmpty()){
+               s.push(st.pop());
+            }
+        }
+         return s.peek();
+    }
+    
+    public boolean empty() {
+         return st.isEmpty() && s.isEmpty();
+    }
+}
