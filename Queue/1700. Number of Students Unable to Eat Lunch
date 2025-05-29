@@ -1,0 +1,25 @@
+class Solution {
+    public int countStudents(int[] students, int[] sandwiches) {
+        // students = [1,1,0,0] students want sqaure sandwich or circular 
+ // At each step:
+// The student at the front of the queue checks the sandwich on top of the stack.
+// If they want it, they take it and leave the queue.
+// If they don’t want it, they go to the back of the queue.
+// This process repeats until no one wants the top sandwich.
+
+int[] count = new int[2]; // for circular & sqaure
+
+// students[] – represents student sandwich preferences
+
+for(int s:students){
+    count[s]++; // count prefernce
+}
+for(int i =0;i<sandwiches.length;i++){
+ if(count[sandwiches[i]] == 0){
+    return sandwiches.length-i;
+ }count[sandwiches[i]]--;
+
+}
+return 0;
+    }
+}
