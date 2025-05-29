@@ -15,10 +15,12 @@ for(int s:students){
     count[s]++; // count prefernce
 }
 for(int i =0;i<sandwiches.length;i++){
- if(count[sandwiches[i]] == 0){
-    return sandwiches.length-i;
- }count[sandwiches[i]]--;
-
+    // If the count is 0, that means:
+// “No one in the line wants this type of sandwich anymore.”
+ if(count[sandwiches[i]] == 0){ // count[0] or  count[1]
+    return sandwiches.length-i; //return how many students are still left in line
+ }count[sandwiches[i]]--; //If a student does want the sandwich, they eat it.
+//  So we decrease the count of students who want that type.
 }
 return 0;
     }
