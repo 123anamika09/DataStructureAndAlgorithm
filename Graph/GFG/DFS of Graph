@@ -1,0 +1,19 @@
+class Solution {
+    // Function to return a list containing the DFS traversal of the graph.
+    public void helper(int node , boolean[] visited,ArrayList<ArrayList<Integer>> adj, ArrayList<Integer> res){
+        visited[node] = true;
+        res.add(node);
+        for(int neighbor: adj.get(node)){
+            if(!visited[neighbor]){
+                helper(neighbor,visited, adj, res);
+            }
+        }
+    }
+    public ArrayList<Integer> dfs(ArrayList<ArrayList<Integer>> adj) {
+      int v = adj.size(); // no of vertex
+      boolean[] visited =new boolean[v];   
+      ArrayList<Integer> res = new ArrayList<>();
+      helper(0,visited, adj, res ); // Start DFS from vertex 0
+      return res;
+    }
+}
