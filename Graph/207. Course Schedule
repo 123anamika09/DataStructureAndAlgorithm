@@ -1,0 +1,48 @@
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        //  here cycle detection is found means false 
+        //  0-1 & 1-0 so cycle 
+
+
+    //   & m-2 is using topological sort using bfs
+    // topological sort is applied on directed & acyclic graph 
+    // Topological Sort is linear ordering of vertices in a Directed Acyclic Graph (DAG) such that for every directed edge u → v, u comes before v in the ordering.
+
+            ArrayList<ArrayList<Integer>> adjList = new ArrayList<>(); //the adjacency list of a directed graph that represents course dependencies
+            for(int i = 0;i<numCourses;i++){
+                adjList.add(new ArrayList<Integer>());
+            }
+            int[] inDegree = new int[numCourses];
+            for(int[] preReq : prerequisites){
+                int course = preReq[0];
+                int prereq = preReq[1];
+//   [a, b] → To take course `a`, you must first complete course `b`.b → a , adj.get(b).add(a);
+                adjList.get(prereq).add(course);
+                inDegree[course]++; // jiska value 0 hoga wo independent oga
+            }
+            // we uses queue here becausee queue  process the order int the way they are added
+            int count = 0; 
+            Queue<Integer> queue = new LinkedList<>();
+            //  add all the course with 0 indegree to queue
+            for(int i = 0;i<numCourses;i++){
+                if(inDegree[i] == 0){
+                    queue.offer(i); 
+                }
+            } 
+            //  ab hm check krenge kon sa course independent wale course pr depend h
+            while(!queue.isEmpty()) { // queue me utna element hoga jitna course complete hua h 
+                int crs = queue.poll();
+                count++; // kitna course cmplt hua 
+              // independent wala jo h usko nikalenge aur dependent wale ko -- krenfge44
+              for( int dependent: adjList.get(crs)){
+                inDegree[dependent]--;
+                if(inDegree[dependent] == 0) {
+                    queue.offer(dependent);
+                }
+              }
+            }
+return count == numCourses;
+           
+
+         }
+}
