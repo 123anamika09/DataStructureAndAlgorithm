@@ -1,0 +1,26 @@
+
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+          // arraylist k andrr ek list h - lists
+          //lists.get(0) = [1,4,3] me 1 ka address milega
+         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+         for(int i =0;i<lists.length;i++ ){ //list is an array
+           ListNode temp =  lists[i];  // linkedlist get 
+        //    4,5 me traverse krna h
+        while(temp!=null){
+            minHeap.add(temp.val);
+            temp = temp.next;
+        }
+
+         }
+         ListNode res = new ListNode(0); //res se 1hi node mila n hme to 1 aur node bnana hoga n jisme hm new value add krenge
+         ListNode storeRes = res;
+         while(!minHeap.isEmpty()) {
+           res.next = new ListNode(minHeap.poll());
+           res = res.next;
+         }
+         return storeRes.next;
+    }
+}
+// o(n)+nlogn+o(n) = nlogn sbse bara h 
+by brute force using an arraylist add all element to arraylist then sort it & again convert it to list
