@@ -1,0 +1,42 @@
+class Trie {
+    Trie[] children;
+    boolean flag;
+    public Trie() {
+        children = new Trie[26];
+        flag = false;
+    }
+    
+    public void insert(String word) {
+        //  insert k liye hmesha root se start krenge
+        // this refers to the current Trie object — i.e., the root of the Trie.
+        Trie root = this;
+        for(char ch : word.toCharArray()){
+            int idx = ch - 'a'; //c' - 'a' = 99 - 97 = 2 indx comes btween 0-25
+           if( root.children[idx] == null) {
+               root.children[idx] = new Trie();
+           }
+           root = root.children[idx];
+        }
+        root.flag = true;
+    }
+    
+    public boolean search(String word) {
+         Trie root = searchPrefix(word);
+        return root != null && root.flag;
+    }
+    
+    public boolean startsWith(String prefix) {
+     return searchPrefix(prefix) != null;
+    }
+     private Trie searchPrefix(String word) {
+        Trie node = this;
+        for (char ch : word.toCharArray()) {
+            int index = ch - 'a';
+            if (node.children[index] == null) {
+                return null;
+            }
+            node = node.children[index];
+        }
+        return node;
+    }
+}
