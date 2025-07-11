@@ -1,0 +1,22 @@
+class Solution {
+    public String gcdOfStrings(String str1, String str2) {
+         if(!(str1+str2).equals(str2+str1)){
+            return "";
+         }
+        //  str1 + str2 == str2 + str1
+// → There exists a common GCD string.
+//t he actual GCD string is the substring from 0 to gcd(str1.length, str2.length).
+
+
+int lenGcd = gcd(str1.length(),str2.length());
+return  str1.substring(0,lenGcd);
+    }
+public int gcd(int a , int b){
+    // gcd(12, 8) = 4
+    // gcd(a, b) = gcd(b, a % b)
+    // Keep repeating this until b == 0, then return a.
+    if(b == 0) return a;
+    else return gcd(b,a%b);
+
+    }
+}
