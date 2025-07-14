@@ -12,3 +12,21 @@ class Solution {
         return str;
     }
 }
+   ----------------------------------------m-2 ---------------------------------------
+class Solution {
+    public String reverseWords(String s) {
+        StringBuilder sb = new StringBuilder();
+
+        //  trim() It doesn’t touch the extra spaces in the middle — only front and end. 
+        s=s.trim();
+        
+        //  The split() method is used to break a string into an array of substrings, based on a given delimiter (usually a character or regex pattern).
+   String[] split = s.split("\\s+"); //    \\s+ - regex expression
+  for(int i = split.length-1;i>=0;i--){
+    sb.append(split[i]);
+     if (i != 0) sb.append(" "); // add space bt not for last
+  }
+        return sb.toString();
+        
+    }
+}
