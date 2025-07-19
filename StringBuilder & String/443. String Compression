@@ -1,0 +1,24 @@
+class Solution {
+    public int compress(char[] chars) {
+        int idx = 0; 
+        for(int i = 0;i<chars.length;i++){
+            int count = 0;
+            char currCh = chars[i];
+            while(i<chars.length && chars[i] == currCh){
+                count++;
+                i++;
+            }
+            if(count<=1) chars[idx++] = currCh;
+            else {
+                chars[idx++] = currCh;
+                String str = Integer.toString(count);
+               //12 if no then convert it to string then take character wise 
+                for(char dig:str.toCharArray()){
+                    chars[idx++] = dig;
+                }
+            }
+            i--; // to balance the last extra increment for loop
+        }
+     return idx; // the length of compressed array
+    }
+}
